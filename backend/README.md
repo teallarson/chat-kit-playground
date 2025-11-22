@@ -20,9 +20,9 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-4. Add your Anthropic API key to `.env`:
+4. Add your OpenAI API key to `.env` (required):
 ```
-ANTHROPIC_API_KEY=your_api_key_here
+OPENAI_API_KEY=sk-your_api_key_here
 ```
 
 ## Running
@@ -55,18 +55,25 @@ The API will be available at `http://localhost:8000`
 - `GET /api/chatkit/threads/{thread_id}` - Get thread details
 - `POST /api/chatkit/threads/{thread_id}/messages` - Send a message (streaming response)
 
+## Current Implementation
+
+- ✅ OpenAI agent integration (GPT-3.5-turbo)
+- ✅ ChatKit server implementation
+- ✅ Session and thread management
+- ✅ Streaming responses
+- ✅ In-memory storage (MemoryStore)
+
 ## Next Steps
 
-- [ ] Integrate Anthropic Claude for AI responses
-- [ ] Add proper session management
 - [ ] Implement database storage (replace in-memory storage)
 - [ ] Add authentication
-- [ ] Implement proper ChatKit API specification
-- [ ] Add error handling and logging
+- [ ] Add error handling and logging improvements
+- [ ] Add more agent customization options
 
 ## Tech Stack
 
 - FastAPI - Modern Python web framework
-- Anthropic SDK - Claude AI integration
+- OpenAI Agents SDK - AI agent integration
+- ChatKit Server SDK - ChatKit API implementation
 - Uvicorn - ASGI server
 - Pydantic - Data validation

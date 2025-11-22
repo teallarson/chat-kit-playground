@@ -7,7 +7,6 @@ from functools import lru_cache
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
-    anthropic_api_key: str = ""
     openai_api_key: str = ""
     host: str = "0.0.0.0"
     port: int = 8000

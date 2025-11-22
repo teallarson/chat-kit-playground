@@ -20,8 +20,8 @@ pip install -r requirements.txt
 # Create .env file
 cp .env.example .env
 
-# Add your Anthropic API key to .env (optional for now)
-# ANTHROPIC_API_KEY=your_key_here
+# Add your OpenAI API key to .env (required)
+# OPENAI_API_KEY=sk-...
 
 # Start the backend server
 python -m uvicorn app.main:app --reload --port 8000
@@ -29,13 +29,13 @@ python -m uvicorn app.main:app --reload --port 8000
 
 The backend will be running at `http://localhost:8000`
 
-### 2. Frontend Setup
+### 2. Frontend Setup (React)
 
-In a new terminal:
+In a new terminal (from project root):
 
 ```bash
-# Navigate to project root (where package.json is)
-cd chat-ui
+# Navigate to react folder
+cd react
 
 # Install dependencies
 npm install
@@ -59,19 +59,22 @@ The frontend will be running at `http://localhost:5173`
 - ✅ Session management
 - ✅ Thread creation
 - ✅ Message sending
-- ✅ Echo responses (placeholder)
-- ⏳ AI integration (coming next)
+- ✅ OpenAI agent integration (GPT-3.5-turbo)
+- ✅ Streaming responses
+- ✅ In-memory storage
+- ⏳ Database storage (coming next)
+- ⏳ Authentication (coming next)
 
 ## Next Steps
 
-To integrate AI responses:
+The backend is already integrated with OpenAI agents. To customize:
 
-1. Get an Anthropic API key from https://console.anthropic.com/
+1. Get an OpenAI API key from https://platform.openai.com/api-keys
 2. Add it to `backend/.env`:
    ```
-   ANTHROPIC_API_KEY=sk-ant-...
+   OPENAI_API_KEY=sk-...
    ```
-3. Update `backend/app/main.py` to use Claude instead of echo responses
+3. Customize the agent in `backend/app/chatkit_server.py` (model, instructions, etc.)
 
 ## Project Structure
 
@@ -79,16 +82,21 @@ To integrate AI responses:
 chat-ui/
 ├── backend/              # FastAPI backend
 │   ├── app/
-│   │   ├── main.py      # Main server file
+│   │   ├── main.py      # FastAPI app and routes
+│   │   ├── chatkit_server.py  # ChatKit server implementation
+│   │   ├── memory_store.py    # In-memory storage
 │   │   └── config.py    # Configuration
+│   ├── dev.sh           # Development script
 │   ├── requirements.txt
 │   └── .env.example
-├── src/                  # React frontend
-│   ├── Chat.tsx         # Main chat component
-│   ├── Chat.css         # Styling
-│   └── App.tsx          # App entry
-├── vite.config.ts       # Vite config with proxy
-└── package.json
+├── react/                # React frontend
+│   ├── src/
+│   │   ├── Chat.tsx     # Main chat component
+│   │   ├── Chat.css     # Styling
+│   │   └── App.tsx      # App entry
+│   ├── vite.config.ts   # Vite config with proxy
+│   └── package.json
+└── vue/                  # Vue frontend (coming soon)
 ```
 
 ## Troubleshooting
