@@ -1,0 +1,80 @@
+.chat-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.chat-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.3) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.chat-interface {
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  max-height: 900px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border-radius: 24px;
+  overflow: hidden;
+  background: white;
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom styling for ChatKit components */
+.chat-interface::part(container) {
+  border-radius: 24px;
+}
+
+/* ChatKit uses its own theming system - styling is done via theme config in Chat.tsx */
+/* Keep minimal CSS for the container only */
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .chat-container {
+    padding: 0;
+    background: white;
+  }
+  
+  .chat-container::before {
+    display: none;
+  }
+  
+  .chat-interface {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* Add some personality with animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-interface {
+  animation: fadeIn 0.5s ease-out;
+}
